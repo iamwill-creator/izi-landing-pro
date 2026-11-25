@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowUpRight,
   Clock,
-  Compass,
   CheckCircle2,
   ShieldCheck,
   Terminal,
@@ -12,11 +11,7 @@ import {
   MapPin,
   PackageCheck,
   Activity,
-  Radio,
-  Sparkles,
-  ChevronRight,
   Send,
-  PhoneCall,
   Layers,
   X
 } from 'lucide-react';
@@ -692,6 +687,14 @@ export default function App() {
 
   const handleQuoteSubmit = (e) => {
     e.preventDefault();
+    setQuoteForm((prev) => ({
+      ...prev,
+      company: prev.company.trim(),
+      phone: prev.phone.trim(),
+      pickup: prev.pickup.trim(),
+      dropoff: prev.dropoff.trim(),
+      notes: prev.notes.trim()
+    }));
     setQuoteSubmitted(true);
   };
 
@@ -1669,6 +1672,7 @@ export default function App() {
                     <input
                       type="text"
                       required
+                      maxLength={100}
                       placeholder="Ex: Pharmacie Camp Guézo"
                       value={quoteForm.company}
                       onChange={(e) =>
@@ -1684,6 +1688,8 @@ export default function App() {
                     <input
                       type="tel"
                       required
+                      maxLength={30}
+                      minLength={8}
                       placeholder="+229 01 97 XX XX XX"
                       value={quoteForm.phone}
                       onChange={(e) =>
@@ -1702,6 +1708,7 @@ export default function App() {
                     <input
                       type="text"
                       required
+                      maxLength={120}
                       value={quoteForm.pickup}
                       onChange={(e) =>
                         setQuoteForm({ ...quoteForm, pickup: e.target.value })
@@ -1716,6 +1723,7 @@ export default function App() {
                     <input
                       type="text"
                       required
+                      maxLength={120}
                       value={quoteForm.dropoff}
                       onChange={(e) =>
                         setQuoteForm({ ...quoteForm, dropoff: e.target.value })
@@ -1750,6 +1758,7 @@ export default function App() {
                   </label>
                   <textarea
                     rows={2}
+                    maxLength={500}
                     placeholder="Ex: 15 colis e-commerce par jour avec encaissement Mobile Money..."
                     value={quoteForm.notes}
                     onChange={(e) =>
