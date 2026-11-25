@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F2F0E9;
+    color: #1A1A1A;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer components {
+  /* Bouton magnétique avec couche <span> glissante */
+  .btn-magnetic {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .btn-magnetic:hover {
+    transform: scale(1.03);
+  }
+
+  .btn-magnetic:active {
+    transform: scale(0.98);
+  }
+
+  .btn-magnetic .btn-slide {
+    position: absolute;
+    inset: 0;
+    transform: translateY(102%);
+    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 0;
+  }
+
+  .btn-magnetic:hover .btn-slide {
+    transform: translateY(0%);
+  }
+
+  /* Micro-interaction lift pour liens */
+  .link-lift {
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .link-lift:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Custom Animations pour les Canvas / SVG du Protocole */
+@keyframes laserScan {
+  0% {
+    top: 6%;
+    opacity: 0.4;
+  }
+  50% {
+    top: 90%;
+    opacity: 1;
+  }
+  100% {
+    top: 6%;
+    opacity: 0.4;
+  }
+}
+
+@keyframes ecgPulse {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes slowOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slowOrbitReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-laser-scan {
+  animation: laserScan 3.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.animate-ecg-wave {
+  stroke-dasharray: 300;
+  animation: ecgPulse 3.2s linear infinite;
+}
+
+.animate-orbit-slow {
+  animation: slowOrbit 28s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: slowOrbitReverse 20s linear infinite;
+}
+
+/* Masquer la barre de défilement horizontale parasite */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F2F0E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E4036;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CC5833;
+}
