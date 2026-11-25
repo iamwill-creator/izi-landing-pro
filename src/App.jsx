@@ -1554,9 +1554,15 @@ export default function App() {
                   </button>
                 </li>
                 <li>
-                  <span className="font-mono text-xs text-[#F2F0E9]/60">
-                    +229 01 97 00 00 00
-                  </span>
+                  <a
+                    href="https://wa.me/2290197899933"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-lift font-mono text-xs text-[#F2F0E9]/80 hover:text-[#CC5833]"
+                    title="Contacter LivrExpress Bénin sur WhatsApp"
+                  >
+                    +229 01 97 89 99 33 (WhatsApp)
+                  </a>
                 </li>
                 <li>
                   <a
